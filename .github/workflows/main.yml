@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Unzip project
+        run: unzip -o ./*.zip
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -16,8 +18,6 @@ jobs:
           java-version: 17
       - name: Install and add Android
         run: |
-          mkdir -p www
-          cp index.html www/index.html
           npm install
           npx cap add android
           npx cap sync android
